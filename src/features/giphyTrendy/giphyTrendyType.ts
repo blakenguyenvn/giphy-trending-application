@@ -3,6 +3,7 @@ export interface GiphyAPIParams {
   offset?: number;
   rating?: any;
   type?: any;
+  text?: any;
 }
 
 export interface DataItemType {

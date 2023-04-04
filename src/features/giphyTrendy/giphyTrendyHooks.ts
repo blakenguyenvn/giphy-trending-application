@@ -3,6 +3,7 @@ import {
   selectTrendyParam,
   dataTypeUpdating,
   offsetIncrement,
+  stateReseting,
   fetchGiphyTrendyAsync,
 } from './giphyTrendySlice';
 
@@ -15,6 +16,7 @@ export const useGiphyTrendyHooks = () => {
     actions: {
       dataTypeUpdating,
       offsetIncrement,
+      stateReseting,
       fetchGiphyTrendyAsync,
     },
   };

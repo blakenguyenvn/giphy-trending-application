@@ -10,10 +10,14 @@ const LoaderWrapper = styled.div`
   width: 100%;
   color: #fff;
 `;
+interface LoaderProp {
+  style?: any;
+}
 
-export default function Loader() {
+export default function Loader(props: LoaderProp) {
+  const { style } = props;
   return (
-    <LoaderWrapper>
+    <LoaderWrapper style={style}>
       <CircularProgress color='inherit' />
     </LoaderWrapper>
   );

@@ -44,7 +44,14 @@ export default function PreviewCard(props: PreviewCardProp) {
 
   return (
     <PreviewCardWrapper>
-      <CardMedia component='img' width='100%' height='140px' image={image} />
+      <CardMedia
+        style={{ cursor: 'pointer' }}
+        component='img'
+        width='100%'
+        height='140px'
+        image={image}
+        onClick={handleOpenDetail}
+      />
       <PreviewCardContent>
         <CaptionTypography
           variant='caption'

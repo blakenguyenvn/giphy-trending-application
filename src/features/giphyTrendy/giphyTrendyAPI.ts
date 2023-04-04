@@ -8,6 +8,16 @@ export const fetchGiphyTrendyByType = async ({
   type,
 }: GiphyAPIParams): Promise<GiphyDataType> => {
   const response = await GiphyFetcher.trending({ limit, offset, rating, type });
+  return response;
+};
 
+export const searchGiphyTrendyByText = async ({
+  text,
+  limit,
+  offset,
+  rating,
+  type,
+}: GiphyAPIParams): Promise<GiphyDataType> => {
+  const response = await GiphyFetcher.search(text, { limit, offset, rating, type });
   return response;
 };

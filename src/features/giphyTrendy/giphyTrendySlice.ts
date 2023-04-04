@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, AnyAction } from '@reduxjs/toolkit';
 import { RootState } from 'app/store';
 import { DEFAULT_API_PARAMS } from 'utils/config';
 import { GiphyTrendyState } from './giphyTrendyType';
-import { fetchGiphyTrendyByType } from './giphyTrendyAPI';
+import { fetchGiphyTrendyByType, searchGiphyTrendyByText } from './giphyTrendyAPI';
 
 const initialState: GiphyTrendyState = {
   data: [],
@@ -16,7 +16,14 @@ export const fetchGiphyTrendyAsync = createAsyncThunk(
   async (args: any, { getState }) => {
     const state: any = getState();
     const { giphyTrendy } = state;
-    const response = await fetchGiphyTrendyByType({ ...giphyTrendy.params });
+    const { text } = args;
+
+    let response;
+    if (text) {
+      response = await searchGiphyTrendyByText({ ...giphyTrendy.params, text });
+    } else {
+      response = await fetchGiphyTrendyByType({ ...giphyTrendy.params });
+    }
 
     return {
       data: response.data,
@@ -29,10 +36,26 @@ const increaseOffsetByLimit = (currentOffset: number, limit: number) => {
   return currentOffset + limit;
 };
 
+const updateDataByAction = (state: GiphyTrendyState, action: AnyAction) => {
+  const { data, pagination } = action.payload;
+  const { data: currentData = [], params: currentParams, currentOffset } = state;
+
+  state.data = currentParams?.offset != currentOffset ? [...currentData, ...data] : [...data];
+  state.currentOffset = currentParams?.offset || 0;
+  state.pagination = pagination;
+  state.status = 'idle';
+};
+
 export const giphyTrendySlice = createSlice({
   name: 'giphyTrendy',
   initialState,
   reducers: {
+    stateReseting: (state) => {
+      state.data = [];
+      state.params = { ...initialState.params };
+      state.status = initialState.status;
+      state.currentOffset = initialState.currentOffset;
+    },
     offsetIncrement: (state) => {
       state.params = {
         ...state.params,
@@ -52,13 +75,7 @@ export const giphyTrendySlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchGiphyTrendyAsync.fulfilled, (state, action) => {
-        const { data, pagination } = action.payload;
-        const { data: currentData = [], params: currentParams, currentOffset } = state;
-
-        state.data = currentParams?.offset != currentOffset ? [...currentData, ...data] : [...data];
-        state.currentOffset = currentParams?.offset || 0;
-        state.pagination = pagination;
-        state.status = 'idle';
+        updateDataByAction(state, action);
       })
       .addCase(fetchGiphyTrendyAsync.rejected, (state) => {
         state.status = 'failed';
@@ -66,7 +83,7 @@ export const giphyTrendySlice = createSlice({
   },
 });
 
-export const { dataTypeUpdating, offsetIncrement } = giphyTrendySlice.actions;
+export const { dataTypeUpdating, offsetIncrement, stateReseting } = giphyTrendySlice.actions;
 
 export const selectTrendyData = (state: RootState) => state.giphyTrendy.data;
 export const selectTrendyParam = (state: RootState) => state.giphyTrendy.params;

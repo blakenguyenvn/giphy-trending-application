@@ -13,12 +13,14 @@ const DetailCardWrapper = styled(Card)`
   height: 100%;
   border: none;
   box-shadow: none;
+  min-width: 400px;
+  min-height: 320px;
 `;
 
 const DetailCardContent = styled(CardContent)`
   width: 100%;
-  height: 60px;
   padding: 16px 8px;
+
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: space-between;
@@ -40,7 +42,13 @@ export default function DetailCard(props: DetailCardProp) {
 
   return (
     <DetailCardWrapper>
-      <CardMedia component='img' width='100%' height='100%' image={image} />
+      <CardMedia
+        style={{ padding: '16px', minHeight: '200px' }}
+        component='img'
+        width='100%'
+        height='auto'
+        image={image}
+      />
       <DetailCardContent>
         <UserInfo avatar={user?.avatar_url} name={user?.display_name} />
         <Rating value={rating} />

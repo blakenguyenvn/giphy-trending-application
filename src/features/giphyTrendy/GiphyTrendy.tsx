@@ -6,6 +6,7 @@ import Grid from '@mui/material/Grid';
 import PreviewCard from 'components/PreviewCard';
 import GiphyDetailDialog from 'features/giphyDetail/GiphyDetail';
 import Loader from 'components/Loader';
+import SearchBar from 'components/SearchBar';
 import { useGiphyTrendyHooks } from './giphyTrendyHooks';
 
 const GiphyTrendyWrapper = styled(Grid)`
@@ -24,9 +25,18 @@ export default function GiphyTrendy(props: GiphyTrendyProp) {
   const data = useAppSelector(selectors.data);
   const dispatch = useAppDispatch();
 
+  const loadData = (params: any) => {
+    dispatch(actions.fetchGiphyTrendyAsync({ ...params }));
+  };
+
+  const handleSearch = (text: string) => {
+    dispatch(actions.stateReseting());
+    loadData({ text });
+  };
+
   const handleLoadMore = () => {
     dispatch(actions.offsetIncrement());
-    dispatch(actions.fetchGiphyTrendyAsync({}));
+    loadData({});
   };
 
   const handleOpenDetail = (id: string) => {
@@ -36,7 +46,7 @@ export default function GiphyTrendy(props: GiphyTrendyProp) {
 
   useEffect(() => {
     dispatch(actions.dataTypeUpdating({ type }));
-    dispatch(actions.fetchGiphyTrendyAsync({}));
+    loadData({});
   }, [type]);
 
   const TrendyGrid = data?.map((item) => {
@@ -61,6 +71,7 @@ export default function GiphyTrendy(props: GiphyTrendyProp) {
         loader={<Loader />}
         dataLength={data?.length || 0}
       >
+        <SearchBar searchCallback={handleSearch} />
         <GiphyTrendyWrapper container spacing={2} columns={24}>
           {TrendyGrid}
         </GiphyTrendyWrapper>

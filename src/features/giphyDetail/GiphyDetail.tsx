@@ -19,7 +19,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(2),
   },
   '& .MuiDialogActions-root': {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2),
   },
 }));
 
@@ -28,7 +28,7 @@ const BootstrapActions = styled(DialogActions)`
   justify-content: center;
 `;
 
-const BootstrapedButton = styled(Button)`
+const BootstrapButton = styled(Button)`
   min-width: 100px;
 `;
 
@@ -102,7 +102,9 @@ export default function GiphyDetailDialog(props: GiphyDetailDialogProp) {
           <CaptionTypography>{detail.title}</CaptionTypography>
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          {status == STATUSES.loading && <Loader />}
+          {status == STATUSES.loading && (
+            <Loader style={{ minWidth: '400px', minHeight: '320px' }} />
+          )}
           {status != STATUSES.loading && (
             <DetailCard
               user={detail.user}
@@ -113,9 +115,9 @@ export default function GiphyDetailDialog(props: GiphyDetailDialogProp) {
           )}
         </DialogContent>
         <BootstrapActions>
-          <BootstrapedButton variant='contained' onClick={handleClose}>
+          <BootstrapButton variant='contained' onClick={handleClose}>
             Close
-          </BootstrapedButton>
+          </BootstrapButton>
         </BootstrapActions>
       </BootstrapDialog>
     </>
