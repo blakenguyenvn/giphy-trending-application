@@ -7,6 +7,12 @@ export const SITE = {
   logoWidth: 80,
 };
 
+export const STATUSES = {
+  idle: 'idle',
+  loading: 'loading',
+  failed: 'failed',
+};
+
 export const MAIN_MENU = [
   { id: '1', title: 'GIFS', link: '/gifs', icon: EmojiEmotionsIcon },
   { id: '2', title: 'Videos', link: '/videos', icon: SportsEsportsIcon },
@@ -33,5 +39,5 @@ export const DEFAULT_API_PARAMS = {
   offset: 0,
   limit: 24,
   type: '',
-  rating: RATING_TYPES.g,
+  rating: '',
 };

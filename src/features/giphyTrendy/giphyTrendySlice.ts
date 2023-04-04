@@ -53,9 +53,9 @@ export const giphyTrendySlice = createSlice({
       })
       .addCase(fetchGiphyTrendyAsync.fulfilled, (state, action) => {
         const { data, pagination } = action.payload;
-        const { data: currentData = [], params: currentParams } = state;
+        const { data: currentData = [], params: currentParams, currentOffset } = state;
 
-        state.data = [...currentData, ...data];
+        state.data = currentParams?.offset != currentOffset ? [...currentData, ...data] : [...data];
         state.currentOffset = currentParams?.offset || 0;
         state.pagination = pagination;
         state.status = 'idle';
