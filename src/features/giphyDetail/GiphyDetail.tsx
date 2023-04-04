@@ -110,7 +110,7 @@ export default function GiphyDetailDialog(props: GiphyDetailDialogProp) {
               user={detail.user}
               title={detail.username}
               rating={detail.rating}
-              image={detail.images?.original?.url}
+              image={detail.images?.downsized?.url}
             />
           )}
         </DialogContent>

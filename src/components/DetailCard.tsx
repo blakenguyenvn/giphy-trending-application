@@ -15,12 +15,15 @@ const DetailCardWrapper = styled(Card)`
   box-shadow: none;
   min-width: 400px;
   min-height: 320px;
+  padding-bottom: 80px;
 `;
 
 const DetailCardContent = styled(CardContent)`
   width: 100%;
   padding: 16px 8px;
-
+  position: absolute;
+  bottom: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: space-between;
