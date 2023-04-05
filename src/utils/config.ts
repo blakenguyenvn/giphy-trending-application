@@ -41,3 +41,9 @@ export const DEFAULT_API_PARAMS = {
   type: '',
   rating: '',
 };
+
+export const UPLOADER_SETTING = {
+  MAX_FILE_SIZE: 6291456, // 6 MB
+  MAX_NUMBER_OF_FILES: 10,
+  ALLOWED_FILE_TYPES: ['.gif', '.webp', '.mp4'],
+};

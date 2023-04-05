@@ -51,7 +51,7 @@ export default function GiphyTrendy(props: GiphyTrendyProp) {
 
   const TrendyGrid = data?.map((item) => {
     return (
-      <Grid key={item.id} item xs={4}>
+      <Grid key={item.id} item xs={24} sm={8} lg={4}>
         <PreviewCard
           handleOpenDetail={() => {
             handleOpenDetail(item.id);

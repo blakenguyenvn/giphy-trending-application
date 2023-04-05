@@ -16,6 +16,7 @@ const DetailCardWrapper = styled(Card)`
   min-width: 400px;
   min-height: 320px;
   padding-bottom: 80px;
+  transition: all linear 0.2s;
 `;
 
 const DetailCardContent = styled(CardContent)`
@@ -28,6 +29,7 @@ const DetailCardContent = styled(CardContent)`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: all linear 0.2s;
 
   &:last-child {
     padding-bottom: 16px;

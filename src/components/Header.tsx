@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import Section from 'components/Section';
 import Logo from 'components/Logo';
 import Menu from 'components/Menu';
+import GiphyUploadButton from 'features/giphyUpload/GiphyUploadButton';
 import { SITE, MAIN_MENU } from 'utils/config';
 
 const HeaderContent = styled.div`
@@ -22,6 +23,7 @@ export default function Header() {
         <HeaderContent>
           <Logo title={SITE.title} width={SITE.logoWidth} />
           <Menu items={MAIN_MENU} />
+          <GiphyUploadButton />
         </HeaderContent>
       </Container>
     </Section>
