@@ -1,6 +1,20 @@
-# Getting Started with Healthy Application
+# Getting Started with PI Giphy Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) TS template.
+**Demo Site:** [https://master.d2z6qqo23td953.amplifyapp.com/](https://master.d2z6qqo23td953.amplifyapp.com/)
+
+**GitHub repository:** [https://github.com/blakenguyenvn/giphy-trending-application](https://github.com/blakenguyenvn/giphy-trending-application)
+
+**How long did you spend on the coding test?**
+→ About 12 hours.
+
+**What would you add to your solution if you had more time?**
+→ I’m going to complete a NodeJS server to handle upload file from client to S3.
+→ Write more Unit Test for:
+
+- Spec for Reducers in State Management.
+- Component rendering.
+- Integration test for API.
+  → Improve styling and UI components: add skeleton for Gifs loading, Detail dialog.
 
 ## Available Scripts
 
