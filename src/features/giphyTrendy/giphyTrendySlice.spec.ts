@@ -1,10 +1,10 @@
 import { DEFAULT_API_PARAMS } from 'utils/config';
 import giphyTrendyReducer, {
-  GiphyTrendyState,
   dataTypeUpdating,
   offsetIncrement,
   stateReseting,
 } from './giphyTrendySlice';
+import { GiphyTrendyState } from './giphyTrendyType';
 
 describe('giphyTrendy reducer', () => {
   const initialState: GiphyTrendyState = {
@@ -29,7 +29,7 @@ describe('giphyTrendy reducer', () => {
 
   it('should handle dataTypeUpdating', () => {
     const actual = giphyTrendyReducer(initialState, dataTypeUpdating({ type: 'gifs' }));
-    expect(actual.params.type).toEqual('gifs');
+    expect(actual.params?.type).toEqual('gifs');
   });
 
   it('should handle offsetIncrement', () => {

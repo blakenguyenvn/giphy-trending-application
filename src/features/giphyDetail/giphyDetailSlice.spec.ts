@@ -1,4 +1,5 @@
-import giphyDetailReducer, { GiphyDetailState } from './giphyDetailSlice';
+import giphyDetailReducer from './giphyDetailSlice';
+import { GiphyDetailState } from './giphyDetailType';
 
 describe('giphyDetail reducer', () => {
   const initialState: GiphyDetailState = {
